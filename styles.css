@@ -2,7 +2,6 @@ body {
 	background: -webkit-linear-gradient(left, rgba(155,100,250,1), rgba(255,255,255,1), rgba(255,245,50,1));
 	background: -moz-linear-gradient(left, rgba(155,100,250,1), rgba(255,255,255,1), rgba(255,245,50,1)); margin:0;}
 
-.ui-page{}
 .ui-content .header{
 	text-align:center;
 	border-bottom-color:rgba(0,0,0,.0);
@@ -13,8 +12,6 @@ body {
 	border-radius:25px;
 	display:inline-block;
 	box-shadow:5px 5px 5px #FF0;
-}
-.ui-content{
 }
 .pgContent {
 	background:#FFF;
@@ -98,10 +95,9 @@ th {color: #ffff00; font-size:12px;}
 th.banner { font-size:24px; background-image: url('images/header_tile.jpg');height:94px;} 
 .subhead {background-image: url('images/body_tile2.gif');}
 .lower {background-image: url('images/lower_tile.gif');}
-.other {}
 .main {font-family:Arial, Helvetica, Sans-Serif; font-size:14px; color:#000;}
 .topnav {background-image: url('images/navbutton.gif');}
-.index {;font-family:Arial, Helvetica, Sans-Serif; font-size:12px; color:#000;}
+.index {font-family:Arial, Helvetica, Sans-Serif; font-size:12px; color:#000;}
 .rightnav {font-family:Arial, Helvetica, Sans-Serif; font-size:12px; color:#000;}
 
 .vrse {
