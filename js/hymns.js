@@ -1,6 +1,6 @@
 var $toc = $('#toc'),
 	$modal = $('#modal'),
-	$modalClose = $modal.find('.close');
+	$modalClose = $modal.find('.close'),
 	$modalBody = $('#modalBody');
 
 var navigation = [], songArray = [];
@@ -34,14 +34,17 @@ function populateNav() {
 
 function showRecords(filter) {
 	var newFilter = filter.split(" ");
-	while ($modalBody.firstChild) {
-		$modalBody.removeChild($modalBody.firstChild);
+	while ($modalBody[0].firstChild) {
+		$modalBody[0].removeChild($modalBody[0].firstChild);
 	}
 	if (newFilter.length > 1) {
 		//Display song titles by numbers
 		for (var i = newFilter[0]; i < newFilter[1]; i++) {
 			var item = document.createElement('div');
-			item.onclick = showSong(i);
+			var number = document.createElement('span');
+			number.classList += "num";
+			item.appendChild(number);
+			item.onclick = function() {showSong(i);} ;
 			item.innerText = songArray.songs.song[i].title;
 			$modalBody.append(item);
 		}
@@ -57,12 +60,14 @@ function showRecords(filter) {
 		}
 		array.sort(function(a,b) {
 			return a[0].toUpperCase().localeCompare(b[0].toUpperCase());
-			// return a[0] - b[0];
 		});
 
 		for (var i = 0; i < array.length; i++) {
 			var item = document.createElement('div');
-			item.onclick = showSong(i);
+			var number = document.createElement('span');
+			number.classList += "num";
+			item.appendChild(number);
+			item.onclick = function() {showSong(i);} ;
 			item.innerText = array[i][0];
 			$modalBody.append(item);
 		}
@@ -71,7 +76,8 @@ function showRecords(filter) {
 }
 
 function showSong(index) {
-
+	//Hide modal and display song
+	$modalClose.click();
 }
 
 function loadJSON(file) {
