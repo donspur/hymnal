@@ -6,6 +6,7 @@
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="css/jquery.modal.css" media="screen">
     <link rel="stylesheet" href="css/styles.css" media="screen">
 </head>
 
@@ -13,51 +14,44 @@
     <div id="content">
         <div id="toc">
             <h1>Restoration Ministries</h1>
-            <h2 class="pgNum">Song Book</h2>
-
-            <p class="pgNum" style="text-align:center;">Contents</p>
-
-            <p style="text-align:center; background:#FFF; border:8px solid #780045;
-            border-radius:15px; padding:0 1em">
-                <span class="nav A">A</span>
-                <span class="nav B">B</span>
-                <span class="nav C">C</span>
-                <span class="nav D">D</span>
-                <span class="nav E">E</span>
-                <span class="nav F">F</span>
-                <span class="nav G">G</span>
-                <span class="nav H">H</span>
-                <span class="nav I">I</span>
-                <span class="nav J">J</span>
-                <span class="nav K">K</span>
-                <span class="nav L">L</span>
-                <span class="nav M">M</span>
-                <span class="nav N">N</span>
-                <span class="nav O">O</span>
-                <span class="nav P">P</span>
-                <span class="nav Q">Q</span>
-                <span class="nav R">R</span>
-                <span class="nav S">S</span>
-                <span class="nav T">T</span>
-                <span class="nav U">U</span>
-                <span class="nav V">V</span>
-                <span class="nav W">W</span>
-                <span class="nav X">X</span>
-                <span class="nav Y">Y</span>
-                <span class="nav Z">Z</span>
-                <br>
-                <br>
-                <span class="nav num1">1-100</span>
-                <span class="nav num2">101-200</span>
-                <span class="nav num3">201-300</span>
-                <span class="nav num4">301-400</span>
-                <span class="nav num5">401-444</span>
+            <h2>Song Book</h2>
+            <p>Contents</p>
+            <p class="navbar">
+                <span>A</span><span>B</span>
+                <span>C</span><span>D</span>
+                <span>E</span><span>F</span>
+                <span>G</span><span>H</span>
+                <span>I</span><span>J</span>
+                <span>K</span><span>L</span>
+                <span>M</span><span>N</span>
+                <span>O</span><span>P</span>
+                <span>Q</span><span>R</span>
+                <span>S</span><span>T</span>
+                <span>U</span><span>V</span>
+                <span>W</span><span>X</span>
+                <span>Y</span><span>Z</span>
+                <br><br>
+                <span>1-100</span>
+                <span>101-200</span>
+                <span>201-300</span>
+                <span>301-400</span>
+                <span>401-444</span>
             </p>
         </div>
     </div>
 
-    <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
-        crossorigin="anonymous"></script>
+    <div id="modal" style="display: none;">
+        <div class="close">
+            <span></span>
+        </div>
+        <div id="modalBody">
+        </div>
+    </div>
+
+    <script src="js/jquery-3.3.1.min.js" type="text/javascript"></script>
+    <script src="js/jquery.modal.min.js" type="text/javascript"></script>
+    <script src="js/elasticlunr.min.js" type="text/javascript"></script>
+    <script src="js/songs.js" type="text/javascript"></script>
     <script src="js/hymns.js" type="text/javascript"></script>
 </body>
 
