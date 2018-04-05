@@ -1,4 +1,5 @@
 var $toc = $('#toc'),
+	$song = $('#song'),
 	$modal = $('#modal'),
 	$modalClose = $modal.find('.close'),
 	$modalBody = $('#modalBody');
@@ -39,14 +40,20 @@ function showRecords(filter) {
 	}
 	if (newFilter.length > 1) {
 		//Display song titles by numbers
-		for (var i = newFilter[0]; i < newFilter[1]; i++) {
+		for (var i = 0; i < newFilter[1]; i++) {
 			var item = document.createElement('div');
 			var number = document.createElement('span');
 			number.classList += "num";
+			number.innerText = i+1;
 			item.appendChild(number);
-			item.onclick = function() {showSong(i);} ;
+			item.onclick = function(j)	{
+				return function() {
+					showSong(j);
+				}
+			}(i);
 			item.innerText = songArray.songs.song[i].title;
 			$modalBody.append(item);
+			item.appendChild(number);
 		}
 		$modal.toggle().addClass("active");
 	} else {
@@ -62,14 +69,20 @@ function showRecords(filter) {
 			return a[0].toUpperCase().localeCompare(b[0].toUpperCase());
 		});
 
+	
 		for (var i = 0; i < array.length; i++) {
 			var item = document.createElement('div');
 			var number = document.createElement('span');
 			number.classList += "num";
-			item.appendChild(number);
-			item.onclick = function() {showSong(i);} ;
+			number.innerText = array[i][1] + 1;
+			item.onclick = function(j) {
+				return function() {
+					showSong(array[j][1]);
+				};
+			}(i);
 			item.innerText = array[i][0];
 			$modalBody.append(item);
+			item.appendChild(number);
 		}
 		$modal.toggle().addClass("active");
 	}
@@ -77,7 +90,98 @@ function showRecords(filter) {
 
 function showSong(index) {
 	//Hide modal and display song
+	$toc.toggle();
+	while ($song.firstChild) {
+		$song.removeChild($song.firstChild);
+	}
+
+	var song = songArray.songs.song[index];
+	var songStruct = [], orderSong = [];
+	var number = song.number;
+	var title = song.title;
+	var verses = song.verse;
+	var chorus = song.chorus;
+	var author = song.author;
+
+	songStruct.push(number, title, verses, chorus, author);
+	
+	var ssLength = songStruct.length;
+	var controls = document.createElement("div");
+	var controls = document.createElement("div");
+
+	for (var i = 0; i < ssLength; i++) {
+		switch (i) {
+			case 0:
+				if (songStruct[i]) {
+					console.log(songStruct[i]);
+					var newDiv = document.createElement("div");
+					newDiv.classList += "songNum";
+					newDiv.innerText = songStruct[i];
+					$song.append(newDiv);
+				}
+				break;
+			case 1:
+				if (songStruct[i]) {
+					console.log(songStruct[i]);
+					var newDiv = document.createElement("div");
+					newDiv.classList += "songTitle";
+					newDiv.innerText = songStruct[i];
+					$song.append(newDiv);
+				}
+				break;
+			case 2:
+				if (songStruct[i]) {
+					console.log(songStruct[i]);
+					var songLength = songStruct[i].length + 1;
+					for (var j = 0; j < songLength; j++) {
+						var newDiv = document.createElement("div");
+						switch (j) {
+							case 0: 
+								newDiv.classList += "verse";
+								newDiv.innerText = cleanupString(songStruct[i][j]);
+								$song.append(newDiv);
+								break;
+							case 1: 
+							if (songStruct[3].length > 0) {
+									newDiv.classList += "chorus";
+									newDiv.innerText = cleanupString(songStruct[3]);
+									$song.append(newDiv);
+								}
+								break;
+							default:
+								newDiv.classList += "verse";
+								newDiv.innerText = cleanupString(songStruct[i][(j-1)]);
+								$song.append(newDiv);
+								break;
+						}
+					}
+				}
+				break;
+			case 4:
+				if (songStruct[i]) {
+					var newDiv = document.createElement("div");
+					newDiv.classList += "author";
+					newDiv.innerText = songStruct[i];
+					$song.append(newDiv);
+				}
+				break;
+		}
+	}
+
+	$song.toggle();
 	$modalClose.click();
+
+	return false;
+}
+
+//Remove **, excess space from string
+function cleanupString(string) {
+	var newString = string.replace(/\*/g, "").replace(/\s{2,}/g, "\n").trim();
+	return newString;
+}
+
+function isEmpty(str) {
+    return (!str || 0 === str.length);
 }
 
 function loadJSON(file) {

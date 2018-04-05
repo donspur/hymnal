@@ -20,11 +20,60 @@ body {
 	    -ms-flex-flow: column;
 	        flex-flow: column;
 	height: auto;
+	max-height: 90%;
+	overflow-x: hidden;
+	overflow-y: auto;
 	position: relative;
 	top: 50%;
 	-webkit-transform: translateY(-50%);
 	        transform: translateY(-50%);
+}
 
+#content::-webkit-scrollbar-track {
+	border-radius: 10px;
+	background-color: #F5F5F5;
+	-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+			box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+}
+
+#content::-webkit-scrollbar {
+	width: 12px;
+	background-color: #F5F5F5;
+}
+
+#content::-webkit-scrollbar-thumb {
+	background-color: #D62929;
+	border-radius: 10px;
+	-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3);
+			box-shadow: inset 0 0 6px rgba(0,0,0,.3);
+}
+
+#controls {
+	position: absolute;
+}
+
+#controls > .back,
+#controls > .index, 
+#controls > .full {
+	background-color: transparent;
+	background-repeat: no-repeat;
+	background-position: 50% 50%;
+	background-size: cover;
+	border: none;
+	height: 50px; width: 50px;
+	transition: all 0.3s ease-out;
+}
+
+#controls > .back {
+	background-image: url('../img/arrow-left.svg');
+}
+
+#controls > .index {
+	background-image: url('../img/bars.svg');
+}
+
+#controls > .full {
+	background-image: url('../img/expand.svg');
 }
 
 #modal {
@@ -140,6 +189,43 @@ body {
 
 #modal.active > #modalBody {
 	transform: scale(1);
+}
+
+#modalBody .num {
+    left: 10%;
+	position: absolute;
+}
+
+#song {
+	color: #333;
+    font-size: 18px;
+    font-weight: 500;
+	font-family: 'Open Sans', 'Arial Narrow', Arial, sans-serif;
+	line-height: 1.5;
+	margin: 0rem 2rem;
+	position: relative;
+	text-align: justify;
+}
+
+#song > .songNum {
+	display: inline-block;
+	margin-right: 5%;
+}
+
+#song > .songTitle {
+	display: inline-block;
+	/* margin-left: 5%; */
+}
+
+#song > .verse,
+#song > .chorus {
+	margin-bottom: 1rem;
+	transform: translateX(20%);
+}
+
+#song > .author {
+	right: 2rem;
+	text-align: right;
 }
 
 #toc {
