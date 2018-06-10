@@ -1,8 +1,8 @@
-var $toc = $('#toc'),
-	$song = $('#song'),
-	$modal = $('#modal'),
+var $toc = $(document.getElementById('toc')),
+	$song = $(document.getElementById('song')),
+	$modal = $(document.getElementById('overlay')),
 	$modalClose = $modal.find('.close'),
-	$modalBody = $('#modalBody');
+	$modalBody = $(document.getElementById('modalBody'));
 
 var navigation = [], songArray = [];
 
@@ -16,9 +16,13 @@ $(document).keyup(function(e) {
 	if (e.which == 27) $modalClose.click();
 });
 
+$modal.on("click", function() {
+	$modal.removeClass('active').delay(300).fadeToggle(200);
+});
+
 //Hide modal on click
 $modalClose.on("click", function() {
-	$modal.removeClass('active').delay(300).fadeToggle();
+	$modal.removeClass('active').delay(300).fadeToggle(200);
 });
 
 function populateNav() {
@@ -106,8 +110,8 @@ function showSong(index) {
 	songStruct.push(number, title, verses, chorus, author);
 	
 	var ssLength = songStruct.length;
-	var controls = document.createElement("div");
-	var controls = document.createElement("div");
+	var header = document.createElement("div");
+		header.classList += "songHeader";
 
 	for (var i = 0; i < ssLength; i++) {
 		switch (i) {
@@ -117,7 +121,7 @@ function showSong(index) {
 					var newDiv = document.createElement("div");
 					newDiv.classList += "songNum";
 					newDiv.innerText = songStruct[i];
-					$song.append(newDiv);
+					header.insertAdjacentElement("beforeend", newDiv);
 				}
 				break;
 			case 1:
@@ -126,7 +130,8 @@ function showSong(index) {
 					var newDiv = document.createElement("div");
 					newDiv.classList += "songTitle";
 					newDiv.innerText = songStruct[i];
-					$song.append(newDiv);
+					header.insertAdjacentElement("afterbegin", newDiv);
+					$song.append(header);
 				}
 				break;
 			case 2:
