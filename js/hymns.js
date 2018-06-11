@@ -1,5 +1,6 @@
 var $toc = $(document.getElementById('toc')),
 	$song = $(document.getElementById('song')),
+	$back = $(document.getElementById('back')),
 	$modal = $(document.getElementById('overlay')),
 	$modalClose = $modal.find('.close'),
 	$modalBody = $(document.getElementById('modalBody'));
@@ -20,11 +21,17 @@ $modal.on("click", function() {
 	$modal.removeClass('active').delay(300).fadeToggle(200);
 });
 
-//Hide modal on click
 $modalClose.on("click", function() {
 	$modal.removeClass('active').delay(300).fadeToggle(200);
 });
 
+$back.on("click", function() {
+	$toc.show();
+	$song.hide();
+	$back.attr('disabled', '');
+});
+
+//Add click listeners to spans in contents
 function populateNav() {
 	navigation = $toc.find('span');
 	(function () {
@@ -42,7 +49,10 @@ function showRecords(filter) {
 	while ($modalBody[0].firstChild) {
 		$modalBody[0].removeChild($modalBody[0].firstChild);
 	}
-	if (newFilter.length > 1) {
+	if (newFilter[0] === "All") {
+		var allFilter = [["1 443"]].join();
+		showRecords(allFilter);
+	} else if (newFilter.length > 1) {
 		//Display song titles by numbers
 		for (var i = 0; i < newFilter[1]; i++) {
 			var item = document.createElement('div');
@@ -93,12 +103,6 @@ function showRecords(filter) {
 }
 
 function showSong(index) {
-	//Hide modal and display song
-	$toc.toggle();
-	while ($song.firstChild) {
-		$song.removeChild($song.firstChild);
-	}
-
 	var song = songArray.songs.song[index];
 	var songStruct = [], orderSong = [];
 	var number = song.number;
@@ -107,6 +111,7 @@ function showSong(index) {
 	var chorus = song.chorus;
 	var author = song.author;
 
+	$song[0].innerHTML = "";
 	songStruct.push(number, title, verses, chorus, author);
 	
 	var ssLength = songStruct.length;
@@ -117,7 +122,6 @@ function showSong(index) {
 		switch (i) {
 			case 0:
 				if (songStruct[i]) {
-					console.log(songStruct[i]);
 					var newDiv = document.createElement("div");
 					newDiv.classList += "songNum";
 					newDiv.innerText = songStruct[i];
@@ -126,7 +130,6 @@ function showSong(index) {
 				break;
 			case 1:
 				if (songStruct[i]) {
-					console.log(songStruct[i]);
 					var newDiv = document.createElement("div");
 					newDiv.classList += "songTitle";
 					newDiv.innerText = songStruct[i];
@@ -136,7 +139,6 @@ function showSong(index) {
 				break;
 			case 2:
 				if (songStruct[i]) {
-					console.log(songStruct[i]);
 					var songLength = songStruct[i].length + 1;
 					for (var j = 0; j < songLength; j++) {
 						var newDiv = document.createElement("div");
@@ -173,7 +175,9 @@ function showSong(index) {
 		}
 	}
 
-	$song.toggle();
+	$toc.hide();
+	$song.show();
+	$back.attr('disabled', false);
 	$modalClose.click();
 
 	return false;

@@ -5038,10 +5038,10 @@ var data = {
 				"Be silent, be silent,**\n            A whisper is heard;**\n            Be silent, and listen,**\n            Oh, treasure each word.\n        ",
 				"Be silent, be silent,**\n            For holy this place,**\n            This altar that echoes**\n            The message of grace.\n        ",
 				"Be silent, be silent,**\n            Breathe humbly our prayer;**\n            A foretaste of Eden,**\n            This moment we share.\n        ",
-				" Be silent, be silent,**\n            His mercy record;**\n            Be silent, be silent,**\n            And wait on the Lord.\n        "
+				"Be silent, be silent,**\n            His mercy record;**\n            Be silent, be silent,**\n            And wait on the Lord.\n        "
 			],
 			"chorus": "Tread softly, tread softly,**\n            The master is here;**\n            Tread softly, tread softly,**\n            He bids us draw near.\n        ",
-			"author": " Be silent, be silent,\n            His mercy record;\n            Be silent, be silent,\n            And wait on the Lord."
+			"author": "Fanny Crosby"
 		},
 		{
 			"number": "439",

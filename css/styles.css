@@ -89,28 +89,42 @@ h3 {
     width: 10vmin;
 }
 
-#controls > .back,
-#controls > .index, 
-#controls > .full {
+#controls > button {
 	background-color: transparent;
-	background-repeat: no-repeat;
-	background-position: 50% 50%;
-	background-size: cover;
+    background-repeat: no-repeat;
+    background-position: 50% 50%;
+    background-size: contain;
 	border: none;
-	height: 6vmin; width: 6vmin;
-	transition: all 0.3s ease-out;
+	cursor: pointer;
+    padding-bottom: 2rem;
+	transition: all 0.2s ease-out;
+	width: 6vmin; height: 6vmin;
+    will-change: border, transform;
 }
 
-#controls > .back {
+#controls > button:hover {
+	border-bottom: 3px solid #f00;
+    transform: translateY(-2px);
+}
+
+#controls > #back {
 	background-image: url('../img/arrow-left.svg');
 }
 
-#controls > .index {
-	background-image: url('../img/bars.svg');
+#controls > #index {
+	background-image: url('../img/list.svg');
 }
 
-#controls > .full {
+#controls > #full {
 	background-image: url('../img/expand.svg');
+}
+
+#controls > #sizeUp {
+	background-image: url('../img/search-plus.svg');
+}
+
+#controls > #sizeDown {
+	background-image: url('../img/search-minus.svg');
 }
 
 #modal .num {
@@ -274,8 +288,8 @@ h3 {
 
 #song > .verse,
 #song > .chorus {
-	flex: 0 0 100%;
-	margin-bottom: 1rem;
+	flex: 0 0 80%;
+    margin: 1rem auto;
 }
 
 #song > .author {
@@ -335,6 +349,11 @@ h3 {
 	color: yellow;
 	font-family: Arial, Verdana, sans-serif; 
 	font-size: 13px; 
+}
+
+[disabled] {
+	display: none !important;
+	cursor: not-allowed !important;
 }
 
 @media (max-width: 930px) {
