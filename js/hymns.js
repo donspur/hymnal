@@ -9,7 +9,7 @@ var navigation = [], songArray = [];
 
 $(document).ready(function () {
 	populateNav();
-	loadJSON(data);
+	loadJSON('songs.js');
 });
 
 //Hide modal on Esc
