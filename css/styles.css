@@ -273,7 +273,7 @@ h3 {
 #song > .songHeader > .songNum {
 	display: inline-block;
     flex: 0;
-    margin: 0 5vmin 0 5vmin;
+    margin: auto 5vmin auto 5vmin;
     position: relative;
     text-align: right;
     width: 45%;
